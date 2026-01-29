@@ -1,0 +1,42 @@
+# MRI Age-Group Classification (PCA + Random Forest, 10-Fold CV)
+
+This project builds a simple MRI-based classification pipeline to predict **age group** (*young* vs *old*) from **structural MRI (NIfTI) images**.
+
+Pipeline summary:
+1. Load 3D MRI volumes (`.nii` / `.nii.gz`)
+2. Resample each MRI to a fixed voxel size (2mm isotropic)
+3. Flatten volumes into 1D feature vectors
+4. Reduce dimensionality using **PCA**
+5. Train and evaluate a **RandomForestClassifier** using **10-fold cross-validation**
+6. Report fold accuracies and mean accuracy
+
+---
+
+## Features
+
+- ✅ Works directly from a folder of NIfTI files
+- ✅ Matches MRI files to participants via filename prefix
+- ✅ Filters age ranges and maps them into **young**/**old**
+- ✅ Uses **KFold (n=10)** with shuffling and a fixed seed for reproducibility
+- ✅ Includes optional PCA visualization utilities
+
+---
+
+## Requirements
+
+- Python 3.9+ recommended  
+- Libraries:
+  - numpy
+  - pandas
+  - nibabel
+  - scikit-learn
+  - nilearn
+  - matplotlib
+
+---
+
+## Installation
+
+### Option A: pip
+```bash
+pip install -r requirements.txt
