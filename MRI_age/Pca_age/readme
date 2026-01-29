@@ -1,0 +1,31 @@
+# MRI Age-Group Classification using PCA Features
+
+This repository provides an end-to-end pipeline to classify **young vs old** age groups from **structural MRI** using:
+
+- MRI preprocessing (NIfTI loading + resampling to 2mm)
+- Vectorization (flattened voxels)
+- PCA dimensionality reduction
+- Random Forest classification
+- Visualization (PCA component plots and t-SNE embeddings)
+- Leakage-safe PCA explained-variance estimation across CV folds
+
+## Age mapping
+Valid age bins:
+- 20–30 → **young** (`20-25`, `25-30`)
+- 60–75 → **old** (`60-65`, `65-70`, `70-75`)
+
+Participant labels are obtained from:
+`participants_LSD_andLEMON.csv` (must contain `participant_id` and `age`).
+
+## MRI file naming
+Participant IDs are extracted from MRI filenames using:
+`filename.split('_')[0]`
+
+Example:
+`sub-010002_ses-01_T1w.nii.gz` → `sub-010002`
+
+## How to run
+
+### 1) PCA + RandomForest (train/test)
+```bash
+python scripts/01_pca_rf_age_classification.py --data_folder "C:\research\MRI\structural_MRI" --csv_path "C:\research\MRI\participants_LSD_andLEMON.csv"
